@@ -470,12 +470,14 @@ var shownModalWindows = [];
 
 // Все модальные окна
 var modalWindows = [
-    "room_interface_modalwindow_change_bottle",
-    "room_interface_modalwindow_change_table",
-    "room_interface_modalwindow_buy",
-    "room_interface_modalwindow_achievements",
-    "room_interface_modalwindow_rating"
+    "spr_interface_modalwindow_change_bottle",
+    "spr_interface_modalwindow_change_table",
+    "spr_interface_modalwindow_buy",
+    "spr_interface_modalwindow_achievements",
+    "spr_interface_modalwindow_rating"
 ];
+
+var timeAnmModWin = 5.2;
 
 function ShowModalWindow(modalWindow) {
     for (var i = 0, len = shownModalWindows.length; i < len; i++) {
@@ -484,38 +486,37 @@ function ShowModalWindow(modalWindow) {
         }
     };
 
-    var modalWindowHub = "room_interface_modalwindow";
+    var modalWindowHub = "spr_interface_modalwindow";
     ObjSet(modalWindowHub, { active: 1 });
-    ObjAnimate(modalWindowHub, "alp", 0, 0, function() {  }, [ 0,0,ObjGet(modalWindowHub).alp, 0.3,0,1 ]);
+    ObjAnimate(modalWindowHub, "alp", 0, 0, function() {  }, [ 0,0,ObjGet(modalWindowHub).alp, timeAnmModWin,0,1 ]);
 
     if (shownModalWindows.length > 0) {
         var curModalWindow = shownModalWindows[shownModalWindows.length - 1];
-        ObjSet(curModalWindow, { input: 0 });
-        ObjAnimate(curModalWindow, "alp", 0, 0, function() { }, [ 0,0,ObjGet(curModalWindow).alp, 0.3,0,0 ]);
+        ObjSet(curModalWindow, { active: 0 });
+        ObjAnimate(curModalWindow, "alp", 0, 0, function() { }, [ 0,0,ObjGet(curModalWindow).alp, timeAnmModWin,0,0 ]);
     }
 
     shownModalWindows.push(modalWindow);
 
     ObjSet(modalWindow, { active: 1 });
-    ObjAnimate(modalWindow, "alp", 0, 0, function() {  }, [ 0,0,ObjGet(modalWindow).alp, 0.3,0,1 ]);
+    ObjAnimate(modalWindow, "alp", 0, 0, function() {  }, [ 0,0,ObjGet(modalWindow).alp, timeAnmModWin,0,1 ]);
 }
 
 function HideModalWindow() {
     var curModalWindow = shownModalWindows.pop();
     if (curModalWindow) {
         ObjSet(curModalWindow, { input: 0 });
-        ObjAnimate(curModalWindow, "alp", 0, 0, function() { }, [ 0,0,ObjGet(curModalWindow).alp, 0.3,0,0 ]);
+        ObjAnimate(curModalWindow, "alp", 0, 0, function() { ObjSet(curModalWindow, { active: 0 }); }, [ 0,0,ObjGet(curModalWindow).alp, timeAnmModWin,0,0 ]);
     }
 
     if (shownModalWindows.length > 0) {
         var newModalWindow = shownModalWindows[shownModalWindows.length - 1];
-        ObjAnimate(newModalWindow, "alp", 0, 0, function() { }, [ 0,0,ObjGet(newModalWindow).alp, 0.3,0,1 ]);
+        ObjAnimate(newModalWindow, "alp", 0, 0, function() { }, [ 0,0,ObjGet(newModalWindow).alp, timeAnmModWin,0,1 ]);
         return;
     }
 
-    var modalWindowHub = "room_interface_modalwindow";
+    var modalWindowHub = "spr_interface_modalwindow";
     ObjAnimate(modalWindowHub, "alp", 0, 0, function() {
-        ObjSet(modalWindowHub, { input: 0 });
         ObjSet(modalWindowHub, { active: 0 });
-    }, [ 0,0,ObjGet(modalWindowHub).alp, 0.3,0,0 ]);
+    }, [ 0,0,ObjGet(modalWindowHub).alp, timeAnmModWin,0,0 ]);
 }

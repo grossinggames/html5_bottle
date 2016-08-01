@@ -44,7 +44,7 @@ window.onload = function () {
         ObjAnimate("spr_bottle_button_sound", "scale_x", 0, 0, function() { }, [ 0,0,1, 1.1,0,1, 1.2,0,1.1, 1.3,0,1 ]);
         ObjAnimate("spr_bottle_button_sound", "scale_y", 0, 0, function() {
             spr_bottle_chat_field.innerHTML += '<li style="background-color: #bc96dc">Добро пожаловать в Сладкий Поцелуй!</li>';
-
+            //HideModalWindow();
         }, [ 0,0,1, 1.1,0,1, 1.2,0,1.1, 1.3,0,1 ]);
 
         /*
@@ -57,15 +57,7 @@ window.onload = function () {
         ObjAnimate("spr_bottle_slot_11", "pos_y", 0, 0, function() {}, [ 0,0,slot11.pos_y, 0.8,0,230, 1.5,0,230, 2.3,0,slot11.pos_y ]);
         */
 
-        ObjAnimate("spr_bottle_button_change_bottle", "alp", 0, 0, function() { ShowModalWindow("room_interface_modalwindow_rating"); }, [ 0,0,1, 2,0,1 ]);
-        ObjAnimate("spr_bottle_button_change_bottle", "scale_x", 0, 0, function() { ShowModalWindow("room_interface_modalwindow_change_bottle"); }, [ 0,0,1, 4,0,1 ]);
-        ObjAnimate("spr_bottle_button_change_bottle", "scale_y", 0, 0, function() { HideModalWindow(); }, [ 0,0,1, 6,0,1 ]);
-        ObjAnimate("spr_bottle_button_change_bottle", "angle", 0, 0, function() { HideModalWindow(); }, [ 0,0,0, 8,0,0 ]);
-
-		//ShowModalWindow("room_interface_modalwindow_change_bottle");
-        ShowModalWindow("room_interface_modalwindow_rating");
-		//HideModalWindow();
-
+        //ShowModalWindow("spr_interface_modalwindow_change_bottle");
 
         // Визуальные настройки
         function ButtonEnter(name) {
@@ -112,7 +104,7 @@ window.onload = function () {
             }
         });
 
-        ObjSet("spr_bottle_button_change_bottle",
+        ObjSet("spr_bottle_button_change_bottle_btn",
         {
             cursor: "hand",
             popup: "Поменять бутылку",
@@ -121,6 +113,7 @@ window.onload = function () {
             },
             event_mup: function() {
                 ButtonUp("spr_bottle_button_change_bottle");
+                ShowModalWindow("spr_interface_modalwindow_change_bottle");
             },
             event_mleave: function() {
                 ButtonLeave("spr_bottle_button_change_bottle");
@@ -132,7 +125,26 @@ window.onload = function () {
             }
         });
 
-        ObjSet("spr_bottle_button_change_table",
+        ObjSet("spr_interface_modalwindow_change_bottle_close",
+        {
+            cursor: "hand",
+            popup: "Закрыть",
+            event_mdown: function() {
+                ButtonDown("spr_interface_modalwindow_change_bottle_close");
+            },
+            event_mup: function() {
+                ButtonUp("spr_interface_modalwindow_change_bottle_close");
+                HideModalWindow();
+            },
+            event_mleave: function() {
+                ButtonLeave("spr_interface_modalwindow_change_bottle_close");
+            },
+            event_menter: function() {
+                ButtonEnter("spr_interface_modalwindow_change_bottle_close");
+            }
+        });
+
+        ObjSet("spr_bottle_button_change_table_btn",
         {
             cursor: "hand",
             popup: "Сменить стол",
@@ -141,6 +153,7 @@ window.onload = function () {
             },
             event_mup: function() {
                 ButtonUp("spr_bottle_button_change_table");
+                ShowModalWindow("spr_interface_modalwindow_change_table");
             },
             event_mleave: function() {
                 ButtonLeave("spr_bottle_button_change_table");
@@ -152,7 +165,26 @@ window.onload = function () {
             }
         });
 
-        ObjSet("spr_bottle_button_achievements",
+        ObjSet("spr_interface_modalwindow_change_table_close",
+        {
+            cursor: "hand",
+            popup: "Закрыть",
+            event_mdown: function() {
+                ButtonDown("spr_interface_modalwindow_change_table_close");
+            },
+            event_mup: function() {
+                ButtonUp("spr_interface_modalwindow_change_table_close");
+                HideModalWindow();
+            },
+            event_mleave: function() {
+                ButtonLeave("spr_interface_modalwindow_change_table_close");
+            },
+            event_menter: function() {
+                ButtonEnter("spr_interface_modalwindow_change_table_close");
+            }
+        });
+
+        ObjSet("spr_bottle_button_achievements_btn",
         {
             cursor: "hand",
             popup: "Достижения",
@@ -161,6 +193,7 @@ window.onload = function () {
             },
             event_mup: function() {
                 ButtonUp("spr_bottle_button_achievements");
+                ShowModalWindow("spr_interface_modalwindow_achievements");
             },
             event_mleave: function() {
                 ButtonLeave("spr_bottle_button_achievements");
@@ -172,7 +205,26 @@ window.onload = function () {
             }
         });
 
-        ObjSet("spr_bottle_button_buy",
+        ObjSet("spr_interface_modalwindow_achievements_close",
+        {
+            cursor: "hand",
+            popup: "Закрыть",
+            event_mdown: function() {
+                ButtonDown("spr_interface_modalwindow_achievements_close");
+            },
+            event_mup: function() {
+                ButtonUp("spr_interface_modalwindow_achievements_close");
+                HideModalWindow();
+            },
+            event_mleave: function() {
+                ButtonLeave("spr_interface_modalwindow_achievements_close");
+            },
+            event_menter: function() {
+                ButtonEnter("spr_interface_modalwindow_achievements_close");
+            }
+        });
+
+        ObjSet("spr_bottle_button_buy_btn",
         {
             cursor: "hand",
             popup: "Купить сердечки",
@@ -181,6 +233,7 @@ window.onload = function () {
             },
             event_mup: function() {
                 ButtonUp("spr_bottle_button_buy");
+                ShowModalWindow("spr_interface_modalwindow_buy");
             },
             event_mleave: function() {
                 ButtonLeave("spr_bottle_button_buy");
@@ -192,7 +245,26 @@ window.onload = function () {
             }
         });
 
-        ObjSet("spr_bottle_button_rating",
+        ObjSet("spr_interface_modalwindow_buy_close",
+        {
+            cursor: "hand",
+            popup: "Закрыть",
+            event_mdown: function() {
+                ButtonDown("spr_interface_modalwindow_buy_close");
+            },
+            event_mup: function() {
+                ButtonUp("spr_interface_modalwindow_buy_close");
+                HideModalWindow();
+            },
+            event_mleave: function() {
+                ButtonLeave("spr_interface_modalwindow_buy_close");
+            },
+            event_menter: function() {
+                ButtonEnter("spr_interface_modalwindow_buy_close");
+            }
+        });
+
+        ObjSet("spr_bottle_button_rating_btn",
         {
             cursor: "hand",
             popup: "Рейтинг игроков",
@@ -201,6 +273,7 @@ window.onload = function () {
             },
             event_mup: function() {
                 ButtonUp("spr_bottle_button_rating");
+                ShowModalWindow("spr_interface_modalwindow_rating");
             },
             event_mleave: function() {
                 ButtonLeave("spr_bottle_button_rating");
@@ -212,7 +285,26 @@ window.onload = function () {
             }
         });
 
-        ObjSet("spr_bottle_button_sound",
+        ObjSet("spr_interface_modalwindow_rating_close",
+        {
+            cursor: "hand",
+            popup: "Закрыть",
+            event_mdown: function() {
+                ButtonDown("spr_interface_modalwindow_rating_close");
+            },
+            event_mup: function() {
+                ButtonUp("spr_interface_modalwindow_rating_close");
+                HideModalWindow();
+            },
+            event_mleave: function() {
+                ButtonLeave("spr_interface_modalwindow_rating_close");
+            },
+            event_menter: function() {
+                ButtonEnter("spr_interface_modalwindow_rating_close");
+            }
+        });
+
+        ObjSet("spr_bottle_button_sound_btn",
         {
             cursor: "hand",
             popup: "Управление звуками",
