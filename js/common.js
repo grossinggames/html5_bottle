@@ -172,7 +172,7 @@ function ObjSet(objname, params) {
                 break;
             case "input":
                 if (value) {
-                    obj.style[ properties[key] ] = "auto";
+                    obj.style[ properties[key] ] = "inherit";
                 } else {
                     obj.style[ properties[key] ] = "none";
                 }
@@ -477,7 +477,7 @@ var modalWindows = [
     "spr_interface_modalwindow_rating"
 ];
 
-var timeAnmModWin = 5.2;
+var timeAnmModWin = 0.5;
 
 function ShowModalWindow(modalWindow) {
     for (var i = 0, len = shownModalWindows.length; i < len; i++) {
@@ -499,6 +499,7 @@ function ShowModalWindow(modalWindow) {
     shownModalWindows.push(modalWindow);
 
     ObjSet(modalWindow, { active: 1 });
+    ObjSet(modalWindow, { input: 1 });
     ObjAnimate(modalWindow, "alp", 0, 0, function() {  }, [ 0,0,ObjGet(modalWindow).alp, timeAnmModWin,0,1 ]);
 }
 
